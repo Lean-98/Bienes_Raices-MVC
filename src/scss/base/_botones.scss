@@ -1,0 +1,51 @@
+.boton-amarillo {
+    @include boton($amarillo, inline-block);
+}
+
+.boton-amarillo-block {
+    @include boton($amarillo, block);
+}
+
+.boton-verde {
+    @include boton($verde, inline-block)
+}
+
+.boton-verde-block {
+    @include boton($verde, block);
+}
+
+.boton-limeGreen {
+    @include boton($limeGreen, inline-block);
+}
+
+.boton-springGreen {
+    @include boton($springGreen, inline-block);
+}
+
+.boton-greenYellow {
+    @include boton($greenYellow, inline-block);
+}
+
+.boton-rojo-block {
+    @include boton($rojo, block);
+    width: 100%;
+}
+.boton-rojo {
+    @include boton($rojo, inline-block)
+}
+
+.boton-mediumSeaGreen-block {
+    @include boton($mediumSeaGreen, block);
+    width: 100%;
+}
+.boton-mediumSeaGreen {
+    @include boton($mediumSeaGreen, inline-block)
+}
+
+.boton-orange {
+    @include boton($orange, inline-block);
+}
+
+.boton-orange-block {
+    @include boton($orange, block);
+}
