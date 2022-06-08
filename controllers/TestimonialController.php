@@ -6,19 +6,6 @@ use MVC\Router;
 use Model\Testimonial;
 
 class TestimonialController {
-    
-    public static function index (Router $router) {
-       
-        $testimoniales = Testimonial::all();
-
-        // Muestra mensaje condicional
-        $resultado = $_GET['resultado'] ?? null;
-
-        $router->render('/admin', [
-            'testimoniales' => $testimoniales,
-            'resultado' => $resultado
-        ]);
-    }
 
     public static function crear ( Router $router ) {
 
@@ -71,7 +58,7 @@ class TestimonialController {
             }
         }
 
-            $router->render('/testimoniales/actualizar', [
+            $router->render('testimoniales/actualizar', [
                 'errores' => $errores,
                 'testimonial' => $testimonial 
             ]);

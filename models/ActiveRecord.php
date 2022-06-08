@@ -45,7 +45,7 @@ public function crear() {
     // Mensaje de exito
     if($resultado) {
         // Redireccionar al usuario
-        header('Location: /admin?resultado=1');  
+        header("Location: /admin?resultado=1");  
              
     }   
 }
@@ -67,7 +67,7 @@ public function actualizar() {
 
     if($resultado) {
         // Redireccionar al usuario
-        header('Location: /admin?resultado=2');  
+        header("Location: /admin?resultado=2");  
              
      }       
 }
@@ -79,7 +79,7 @@ public function eliminar() {
 
     if($resultado) {
         $this->borrarImagen();
-        header('Location: /admin?resultado=3');
+        header("Location: /admin?resultado=3");
     }
 }
 
@@ -105,7 +105,7 @@ public function sanitizarAtributos() {
 // Subida de archivos
 public function setImagen($imagen) {
     // Elimina la imagen previa 
-    if( !is_null($this->id) ) {
+    if(!is_null($this->id)) {
        $this->borrarImagen();
     }
     // Asignar al atributo de imagen el nombre de la imagen

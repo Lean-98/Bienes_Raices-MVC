@@ -6,6 +6,7 @@ use Model\Vendedor;
 use Intervention\Image\ImageManagerStatic as Image;
 
 class VendedorController {
+    
     public static function crear (Router $router) {
        
         $errores = Vendedor::getErrores();
@@ -91,7 +92,7 @@ class VendedorController {
                 }
         }
 
-            $router->render('/vendedores/actualizar', [
+            $router->render('vendedores/actualizar', [
                 'errores' => $errores,
                 'vendedor' => $vendedor
 
@@ -111,7 +112,7 @@ class VendedorController {
                 
                 if(validarTipoContenido($tipo)) {
                     $vendedor = Vendedor::find($id);
-                    $vendedor ->eliminar();
+                    $vendedor->eliminar();
                 }
             }
         }      

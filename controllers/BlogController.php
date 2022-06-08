@@ -8,19 +8,6 @@ use Intervention\Image\ImageManagerStatic as Image;
 
 class BlogController {
     
-    public static function index (Router $router) {
-       
-        $blogs = Blog::all();
-
-        // Muestra mensaje condicional
-        $resultado = $_GET['resultado'] ?? null;
-
-        $router->render('blogs/index', [
-            'blogs' => $blogs,
-            'resultado' => $resultado
-        ]);
-    }
-
     public static function crear ( Router $router ) {
 
         $blog = new Blog;
@@ -105,7 +92,7 @@ class BlogController {
                 }
         }
 
-            $router->render('/blogs/actualizar', [
+            $router->render('blogs/actualizar', [
                 'errores' => $errores,
                 'blog' => $blog 
             ]);
@@ -125,10 +112,9 @@ class BlogController {
                     
                     if(validarTipoContenido($tipo)) {
                         $blog = Blog::find($id);
-                        $blog ->eliminar();
+                        $blog->eliminar();
                     }
                 }
             }      
         }
-
 }    

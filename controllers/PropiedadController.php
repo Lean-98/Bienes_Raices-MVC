@@ -120,7 +120,7 @@ class PropiedadController {
         }
     }
 
-       $router->render('/propiedades/actualizar', [
+       $router->render('propiedades/actualizar', [
           'propiedad' => $propiedad,
           'vendedores' => $vendedores,
           'errores' => $errores 
@@ -129,7 +129,7 @@ class PropiedadController {
 
 
     public static function eliminar () {
-        if($_SERVER['REQUEST_METHOD'] === 'POST') {
+        
             if($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 // Validar Id
@@ -146,5 +146,4 @@ class PropiedadController {
                 }
              }
         }
-    }
 }
