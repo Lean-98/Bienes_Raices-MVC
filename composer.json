@@ -11,7 +11,8 @@
     "require": {
         "intervention/image": "^2.7",
         "phpmailer/phpmailer": "^6.6",
-        "vlucas/phpdotenv": "^5.4"
+        "vlucas/phpdotenv": "^5.4",
+         "ext-gd": "*"
     },
     "autoload": {
         "psr-4": {
