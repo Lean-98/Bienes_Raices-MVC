@@ -17,25 +17,12 @@ class Router {
 
     public function comprobarRutas() {
 
-     public $rutasGET = [];
-    public $rutasPOST = [];
-
-    public function get($url , $fn) {
-        $this->rutasGET[$url] = $fn;
-    }
-
-    public function post($url , $fn) {
-        $this->rutasPOST[$url] = $fn;
-    }
-
-    public function comprobarRutas() {
-
         session_start();
-     
-        // Arreglo de rutas protegidas...
-        // $rutas_protegidas = ['/admin', '/propiedades/crear', '/propiedades/actualizar', '/propiedades/eliminar', '/vendedores/crear', '/vendedores/actualizar', '/vendedores/eliminar', '/blogs/crear', '/blogs/actualizar', '/blogs/eliminar', '/testimoniales/crear', '/testimoniales/actualizar', '/testimoniales/eliminar'];
+        $auth = $_SESSION['login']  ?? null;
 
-        // $auth = $_SESSION['login']  ?? null;
+        // Arreglo de rutas protegidas...
+        $rutas_protegidas = ['/admin', '/propiedades/crear', '/propiedades/actualizar', '/propiedades/eliminar', '/vendedores/crear', '/vendedores/actualizar', '/vendedores/eliminar', '/blogs/crear', '/blogs/actualizar', '/blogs/eliminar', '/testimoniales/crear', '/testimoniales/actualizar', '/testimoniales/eliminar'];
+
 
         if (isset($_SERVER['PATH_INFO'])) {
             $currentUrl = $_SERVER['PATH_INFO'] ?? '/';
@@ -52,18 +39,19 @@ class Router {
         }
 
 
-    //    // Proteger las rutas
-    //    if(in_array($currentUrl, $rutas_protegidas) && !$auth) {
-    //         header('Location: /');
-    //    }
+        // Proteger las rutas
+        if(in_array($currentUrl, $rutas_protegidas) && !$auth) {
+             header('Location: /');
+        }
         
        if($fn) {
            // La URL existe y hay una función asociada
            call_user_func($fn, $this);
        } else {
-           echo "Página No Encontrada o Ruta no válida!";
+           echo "Página No Encontrada o Ruta No Válida!";
        }
     }
+
 
     // Muestra una Vista
     public function render($view, $datos = [] ) {
