@@ -17,11 +17,11 @@ class Router {
 
     public function comprobarRutas() {
 
-        session_start();
-        $auth = $_SESSION['login']  ?? null;
+        //session_start();
+        //$auth = $_SESSION['login']  ?? null;
 
         // Arreglo de rutas protegidas...
-        $rutas_protegidas = ['/admin', '/propiedades/crear', '/propiedades/actualizar', '/propiedades/eliminar', '/vendedores/crear', '/vendedores/actualizar', '/vendedores/eliminar', '/blogs/crear', '/blogs/actualizar', '/blogs/eliminar', '/testimoniales/crear', '/testimoniales/actualizar', '/testimoniales/eliminar'];
+        //$rutas_protegidas = ['/admin', '/propiedades/crear', '/propiedades/actualizar', '/propiedades/eliminar', '/vendedores/crear', '/vendedores/actualizar', '/vendedores/eliminar', '/blogs/crear', '/blogs/actualizar', '/blogs/eliminar', '/testimoniales/crear', '/testimoniales/actualizar', '/testimoniales/eliminar'];
 
 
         if (isset($_SERVER['PATH_INFO'])) {
@@ -39,10 +39,11 @@ class Router {
         }
 
 
-        // Proteger las rutas
-        if(in_array($currentUrl, $rutas_protegidas) && !$auth) {
-             header('Location: /');
-        }
+        // // Proteger las rutas
+        // if(in_array($currentUrl, $rutas_protegidas) && !$auth) {
+        //      header('Location: /');
+        // }
+        
         
        if($fn) {
            // La URL existe y hay una función asociada
