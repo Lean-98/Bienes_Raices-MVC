@@ -17,41 +17,51 @@ class Router {
 
     public function comprobarRutas() {
 
+     public $rutasGET = [];
+    public $rutasPOST = [];
+
+    public function get($url , $fn) {
+        $this->rutasGET[$url] = $fn;
+    }
+
+    public function post($url , $fn) {
+        $this->rutasPOST[$url] = $fn;
+    }
+
+    public function comprobarRutas() {
+
         session_start();
-        $auth = $_SESSION['login']  ?? null;
-
+     
         // Arreglo de rutas protegidas...
-        $rutas_protegidas = ['/admin', '/propiedades/crear', '/propiedades/actualizar', '/propiedades/eliminar', '/vendedores/crear', '/vendedores/actualizar', '/vendedores/eliminar', '/blogs/crear', '/blogs/actualizar', '/blogs/eliminar', '/testimoniales/crear', '/testimoniales/actualizar', '/testimoniales/eliminar'];
+        // $rutas_protegidas = ['/admin', '/propiedades/crear', '/propiedades/actualizar', '/propiedades/eliminar', '/vendedores/crear', '/vendedores/actualizar', '/vendedores/eliminar', '/blogs/crear', '/blogs/actualizar', '/blogs/eliminar', '/testimoniales/crear', '/testimoniales/actualizar', '/testimoniales/eliminar'];
 
-        $urlActual = ($_SERVER['REQUEST_URI'] === '') ? '/' : $_SERVER['REQUEST_URI'] ;
-        $metodo = $_SERVER['REQUEST_METHOD'];
+        // $auth = $_SESSION['login']  ?? null;
 
-        $splitURL = explode('?', $urlActual);
-
-        //debuguear($splitURL);
-
-        if ($metodo === 'GET') {
-            $fn = $this->rutasGET[$splitURL[0]] ?? null; //$splitURL[0] contiene la URL sin variables 
+        if (isset($_SERVER['PATH_INFO'])) {
+            $currentUrl = $_SERVER['PATH_INFO'] ?? '/';
         } else {
-          $fn = $this->rutasPOST[$splitURL[0]] ?? null;
+            $currentUrl = $_SERVER['REQUEST_URI'] === '' ? '/' : $_SERVER['REQUEST_URI'];
         }
-          
-    //    if($metodo === 'GET') {
-    //     $fn = $this->rutasGET[$urlActual] ?? null;
-    //    } else {
-    //     $fn = $this->rutasPOST[$urlActual] ?? null;    
-    //    }
+        
+        $method = $_SERVER['REQUEST_METHOD'];
 
-       // Proteger las rutas
-       if(in_array($urlActual, $rutas_protegidas) && !$auth) {
-            header('Location: /');
-       }
+        if ($method === 'GET') {
+            $fn = $this->rutasGET[$currentUrl] ?? null;
+        } else {
+            $fn = $this->rutasPOST[$currentUrl] ?? null;
+        }
+
+
+    //    // Proteger las rutas
+    //    if(in_array($currentUrl, $rutas_protegidas) && !$auth) {
+    //         header('Location: /');
+    //    }
         
        if($fn) {
            // La URL existe y hay una función asociada
            call_user_func($fn, $this);
        } else {
-           echo "Página No encontrada!";
+           echo "Página No Encontrada o Ruta no válida!";
        }
     }
 
