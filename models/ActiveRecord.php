@@ -9,14 +9,13 @@ protected static $db;
 protected static $columnasDB = [];
 protected static $tabla = '';
 
-// Errores
-protected static  $errores = [];
+// Alertas y Mensajes
+protected static $alertas = [];
 
 // Definir la conexción a la DB
 public static function setDB($database) {
     self::$db = $database;
 }
-
 
 public function guardar() {
     if(!is_null($this->id)) {
@@ -42,12 +41,12 @@ public function crear() {
 
    $resultado = self::$db->query($query);
    
-    // Mensaje de exito
-    if($resultado) {
-        // Redireccionar al usuario
-        header("Location: /admin?resultado=1");  
+    // // Mensaje de exito
+    // if($resultado) {
+    //     // Redireccionar al usuario
+    //     header("Location: /admin?resultado=1");  
              
-    }   
+    // }   
 }
 
 public function actualizar() {
@@ -65,11 +64,11 @@ public function actualizar() {
 
     $resultado = self::$db->query($query);
 
-    if($resultado) {
-        // Redireccionar al usuario
-        header("Location: /admin?resultado=2");  
+    // if($resultado) {
+    //     // Redireccionar al usuario
+    //     header("Location: /admin?resultado=2");  
              
-     }       
+    //  }       
 }
 
 // Eliminar un registro
@@ -79,7 +78,7 @@ public function eliminar() {
 
     if($resultado) {
         $this->borrarImagen();
-        header("Location: /admin?resultado=3");
+        // header("Location: /admin?resultado=3");
     }
 }
 
@@ -124,15 +123,18 @@ public function borrarImagen() {
 }
 
 
+public static function setAlerta($tipo, $mensaje) {
+    static::$alertas[$tipo][] = $mensaje;
+}
 
 // Validación
-public static function getErrores() {
-    return static::$errores; 
+public static function getAlertas() {
+    return static::$alertas;
 }
 
 public function validar() {
-    static::$errores = [];
-    return static::$errores;
+    static::$alertas  = [];
+    return static::$alertas ;
 }
 
 // Lista todos los registros

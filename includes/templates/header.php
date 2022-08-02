@@ -1,8 +1,5 @@
 <?php 
-    if(!isset($_SESSION)) {
-    session_start();
-    }
-
+    iniciaSesion();
     $auth = $_SESSION['login'] ?? false;
 
     // var_dump($auth);

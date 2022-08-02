@@ -8,9 +8,6 @@ require 'funciones.php';
 require 'config/database.php';
 
 // Conectarnos a la Base de Datos
-$db = conectarDb();
-
 use Model\ActiveRecord;
-
 ActiveRecord::setDB($db);
 

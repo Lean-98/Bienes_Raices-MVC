@@ -7,21 +7,21 @@ use Model\Admin;
 class LoginController {
     public static function login( Router $router ) {
         
-        $errores = [];
+        $alertas  = [];
 
         if($_SERVER['REQUEST_METHOD'] === 'POST') {
            
             $auth = new Admin($_POST);
 
-            $errores = $auth->validar();
+            $alertas  = $auth->validar();
 
-            if(empty($errores)) {
+            if(empty($alertas )) {
                 // Verificar si el usuario existe
                  $resultado = $auth->existeUsuario();
 
                  if(!$resultado) {
                      // Verificar si el usuario existe o no (mensaje de error)
-                    $errores = Admin::getErrores();
+                    $alertas  = Admin::getalertas();
                  } else {
                     // Verificar el password
                     $autenticado = $auth->comprobarPassword($resultado);
@@ -31,7 +31,7 @@ class LoginController {
                     $auth->autenticar();
                     } else {
                       // Password incorrecto (mensaje de error)
-                      $errores = Admin::getErrores();
+                      $alertas  = Admin::getalertas();
                     }
                  }
 
@@ -40,7 +40,7 @@ class LoginController {
         }
 
         $router->render('auth/login', [
-            'errores' => $errores
+            'alertas' => $alertas 
         ]);
     }
 

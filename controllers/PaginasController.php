@@ -87,17 +87,17 @@ class PaginasController {
 
       // Configurar SMTP
       $mail->isSMTP();
-      $mail->Host = 'smtp.mailtrap.io';
+      $mail->Host = $_ENV['MAIL_HOST'];
       $mail->SMTPAuth = true;
-      $mail->Username = '10b24bccf7d058';
-      $mail->Password = '5386971c14e273';
+      $mail->Username = $_ENV['MAIL_USER'];
+      $mail->Password = $_ENV['MAIL_PASSWORD'];
       $mail->SMTPSecure = 'tls';
-      $mail->Port = 2525;
+      $mail->Port = $_ENV['MAIL_PORT'];
 
       // Configurar el contenido del mail
       $mail->setFrom('admin@bienesraices.com');
       $mail->addAddress('admin@bienesraices.com', 'BienesRaices.com');
-      $mail->Subject = 'Tienes un Nuevo Mensaje';
+      $mail->Subject = 'Tienes un Nuevo Mensaje!';
 
       // Habilitar HTML
       $mail->isHTML(true);
@@ -105,7 +105,7 @@ class PaginasController {
 
       // Definir el contenido
       $contenido = '<html>';
-      $contenido .= '<p>Tienes un nuevo mensaje!</p>';
+      $contenido .= '<p>Bienes Raices: Datos Cliente/Vendedor </p>';
       $contenido .= '<p>Nombre: ' . $respuestas['nombre']  . ' </p>';
 
       // Enviar de forma condicional algunos campos de email o teléfono
@@ -130,6 +130,8 @@ class PaginasController {
       // Enviar el email
       if($mail->send()) {
         $mensaje = "Mensaje Enviado Correctamente!";
+        // Redireccionar al login
+        header('Refresh: 6; url= /');
       } else {
         $mensaje = "El mensaje no se pudo enviar!";
       }

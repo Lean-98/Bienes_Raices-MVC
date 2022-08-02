@@ -1,16 +1,9 @@
 <main class="contenedor seccion">
         <h1 data-cy="heading-admin">Administrador de Bienes Raices</h1>
        
-        <?php 
-            if($resultado) {
-                $mensaje = mostrarNotificaciones( intval($resultado));
-                if($mensaje) { ?>
-                    <p class="alerta exito"><?php echo s($mensaje) ?> </p>
-               <?php }
-            }
-        ?>
+        <!-- <?php include_once __DIR__ . '/../templates/alertas.php';?> -->
 
-        <a href="/propiedades/crear" class="boton boton-greenYellow">Nueva Propiedad</a>
+        <a href="/propiedades/crear" class="boton boton-forestGreen">Nueva Propiedad</a>
         <a href="/vendedores/crear" class="boton boton-limeGreen">Nuevo Vendedor</a> 
         <a href="/blogs/crear" class="boton boton-springGreen">Nuevo Blog</a> 
         <a href="/testimoniales/crear" class="boton boton-mediumSeaGreen">Nuevo Testimonial</a> 

@@ -34,38 +34,38 @@ class Propiedad extends ActiveRecord {
 
     public function validar() {
         if(!$this->titulo) {
-            self::$errores[] = "Debes agregar un Titulo!";
+            self::$alertas ['error'][] = "Debes agregar un Titulo!";
         }
     
         if(!$this->precio) {
-            self::$errores[] = "El Precio es Obligatorio!";
+            self::$alertas ['error'][] = "El Precio es Obligatorio!";
         }
     
         if( strlen( $this->descripcion ) < 50 ) {
-            self::$errores[] = "La Descripción es obligatoria y debe tener al menos 50 caracteres!";
+            self::$alertas ['error'][] = "La Descripción es obligatoria y debe tener al menos 50 caracteres!";
         }
     
         if(!$this->habitaciones) {
-            self::$errores[] = "Debes agregar al menos una habitación!";
+            self::$alertas ['error'][] = "Debes agregar al menos una habitación!";
         }
     
         if(!$this->wc) {
-            self::$errores[] = "Debes agregar al menos un baño!";
+            self::$alertas ['error'][] = "Debes agregar al menos un baño!";
         }
     
         if(!$this->estacionamiento) {
-            self::$errores[] = "El número de lugares de Estacionamiento es obligatorio!";
+            self::$alertas ['error'][] = "El número de lugares de Estacionamiento es obligatorio!";
         }
     
         if(!$this->vendedor_id) {
-            self::$errores[] = "Seleccione un Vendedor!";
+            self::$alertas ['error'][] = "Seleccione un Vendedor!";
         }
     
         if(!$this->imagen) {
-             self::$errores[] = "La Imagen de la propiedad es Obligatoria!";
+             self::$alertas ['error'][] = "La Imagen de la propiedad es Obligatoria!";
          }
         
-        return self::$errores;
+        return self::$alertas;
     }
     
 

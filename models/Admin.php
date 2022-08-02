@@ -5,31 +5,32 @@ namespace Model;
 class Admin extends ActiveRecord {
     // Base de datos
     protected static $tabla = 'usuarios';
-    protected static $columnasDB = ['id', 'email', 'password'];
+    protected static $columnasDB = ['id', 'email', 'password', 'admin'];
 
     public $id;
     public $email;
     public $password;
+    public $admin;
 
     public function __construct($args = [])
     {
         $this->id = $args['id'] ?? null;
         $this->email = $args['email'] ?? '';
         $this->password = $args['password'] ?? '';
-
+        $this->admin = $args['admin'] ?? '0';
     }
 
 
     public function validar() {
         if(!$this->email) {
-            self::$errores[] = 'El Email es Obligatorio!';
+            self::$alertas ['error'][] = 'El Email es Obligatorio!';
         }
 
         if(!$this->password) {
-            self::$errores[] = 'El Password es Obligatorio!';
+            self::$alertas ['error'][] = 'El Password es Obligatorio!';
         }
 
-        return self::$errores;
+        return self::$alertas ;
     }
 
     public function existeUsuario() {
@@ -39,7 +40,7 @@ class Admin extends ActiveRecord {
         $resultado = self::$db->query($query);
 
        if(!$resultado->num_rows) {
-          self::$errores[] = 'El usuario no Existe!';  
+          self::$alertas ['error'][] = 'El usuario No Existe!';  
           return;
        }
        return $resultado;
@@ -51,7 +52,7 @@ class Admin extends ActiveRecord {
         $autenticado = password_verify($this->password, $usuario->password);
 
         if(!$autenticado) {
-            self::$errores[] = 'El Password es Incorrecto!';
+            self::$alertas ['error'][] = 'El Password es Incorrecto!';
         }
 
         return $autenticado;

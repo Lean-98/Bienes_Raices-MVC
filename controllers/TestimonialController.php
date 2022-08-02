@@ -10,7 +10,7 @@ class TestimonialController {
     public static function crear ( Router $router ) {
 
         $testimonial = new Testimonial;
-        $errores = Testimonial::getErrores();
+        $alertas = [];
 
         if($_SERVER['REQUEST_METHOD'] === 'POST') {
       
@@ -18,16 +18,20 @@ class TestimonialController {
             $testimonial = new Testimonial($_POST['testimonial']);
             
             // Validar que no haya campos vacios
-            $errores = $testimonial->validar();
+            $alertas  = $testimonial->validar();
              
-            if(empty($errores)) {
+            if(empty($alertas )) {
             // Guarda en la base de datos
-            $testimonial->guardar();   
+            $testimonial->guardar();
+            Testimonial::setAlerta('exito', 'Testimonial Creado Correctamente!'); 
+            // Redireccionar al login
+            header('Refresh: 3; url= /admin');
         }
     }
 
+        $alertas = Testimonial::getAlertas();   
         $router->render('testimoniales/crear', [
-            'errores' => $errores,
+            'alertas' => $alertas ,
             'testimonial' => $testimonial
         ]);
 }
@@ -39,7 +43,7 @@ class TestimonialController {
          // Obtener datos del blog a actualizar
          $testimonial = Testimonial::find($id);
 
-         $errores = Testimonial::getErrores();
+         $alertas = [];
 
         if($_SERVER['REQUEST_METHOD'] === 'POST') {
     
@@ -50,22 +54,26 @@ class TestimonialController {
             $testimonial->sincronizar($args);
         
             // Validación
-            $errores = $testimonial->validar();
+            $alertas  = $testimonial->validar();
         
         
-            if(empty($errores)) {
+            if(empty($alertas )) {
                 $testimonial->guardar();
+                Testimonial::setAlerta('exito', 'Testimonial Actualizado Correctamente!'); 
+                // Redireccionar al login
+                header('Refresh: 3; url= /admin');
             }
         }
 
+            $alertas = Testimonial::getAlertas();
             $router->render('testimoniales/actualizar', [
-                'errores' => $errores,
+                'alertas' => $alertas ,
                 'testimonial' => $testimonial 
             ]);
         }
 
 
-        public static function eliminar () {
+        public static function eliminar() {
        
             if($_SERVER['REQUEST_METHOD'] === 'POST') {
                 // validar el id
@@ -79,9 +87,9 @@ class TestimonialController {
                     if(validarTipoContenido($tipo)) {
                         $testimonial = Testimonial::find($id);
                         $testimonial ->eliminar();
+                        header('Location: /admin');
                     }
                 }
             }      
         }
-
 }    

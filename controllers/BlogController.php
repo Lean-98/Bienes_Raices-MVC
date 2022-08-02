@@ -11,7 +11,7 @@ class BlogController {
     public static function crear ( Router $router ) {
 
         $blog = new Blog;
-        $errores = Blog::getErrores();
+        $alertas  = [];
 
         if($_SERVER['REQUEST_METHOD'] === 'POST') {
       
@@ -31,9 +31,9 @@ class BlogController {
             }
             
             // Validar que no haya campos vacios
-            $errores = $blog->validar();
+            $alertas  = $blog->validar();
              
-            if(empty($errores)) {
+            if(empty($alertas )) {
             
             // Crear la carpeta para subir imagenes
             if(!is_dir(CARPETA_IMAGENES)) {
@@ -45,11 +45,16 @@ class BlogController {
         
             // Guarda en la base de datos
             $blog->guardar();
+            // Crear mensaje de exito
+            Blog::setAlerta('exito', 'Blog Creado Correctamente!'); 
+            // Redireccionar al login
+            header('Refresh: 3; url= /admin');
             }
         }
 
+        $alertas = Blog::getAlertas();
         $router->render('blogs/crear', [
-            'errores' => $errores,
+            'alertas' => $alertas ,
             'blog' => $blog
         ]);
     }
@@ -61,7 +66,7 @@ class BlogController {
          // Obtener datos del blog a actualizar
          $blog = Blog::find($id);
 
-         $errores = Blog::getErrores();
+         $alertas = [];
 
         if($_SERVER['REQUEST_METHOD'] === 'POST') {
     
@@ -72,7 +77,7 @@ class BlogController {
             $blog->sincronizar($args);
         
             // Validación
-            $errores = $blog->validar();
+            $alertas = $blog->validar();
         
             // Subida de archivos
             // Generar un nombre único
@@ -83,24 +88,29 @@ class BlogController {
                 $blog->setImagen($nombreImagen);
             }
         
-            if(empty($errores)) {
+            if(empty($alertas )) {
                 // Almacenar la imagen
                 if ($_FILES['blog']['tmp_name']['imagen']){
                 $image->save(CARPETA_IMAGENES . $nombreImagen);
                  }
+                 // Guarda en la base de datos
                  $blog->guardar();
+                // Crear mensaje de exito
+                Blog::setAlerta('exito', 'Blog Actualizado Correctamente!'); 
+                // Redireccionar al login
+                header('Refresh: 3; url= /admin');
                 }
         }
-
+            $alertas = Blog::getAlertas();
             $router->render('blogs/actualizar', [
-                'errores' => $errores,
+                'alertas' => $alertas ,
                 'blog' => $blog 
             ]);
         }
 
 
-        public static function eliminar () {
-       
+        public static function eliminar() {
+
             if($_SERVER['REQUEST_METHOD'] === 'POST') {
                 // validar el id
                 $id = $_POST['id'];
@@ -113,8 +123,9 @@ class BlogController {
                     if(validarTipoContenido($tipo)) {
                         $blog = Blog::find($id);
                         $blog->eliminar();
+                        header('Location: /admin');
                     }
                 }
-            }      
+            }  
         }
 }    

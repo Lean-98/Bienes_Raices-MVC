@@ -1,25 +1,27 @@
+@use 'base/variables' as v;
+
 .alerta {
     padding: .5rem;
     text-align: center;
-    color: $blanco;
-    font-weight: $bold;
+    color: v.$blanco;
+    font-weight: v.$bold;
     text-transform: uppercase;
     margin: 1rem 0;
 
     &.error {
-        background-color: $rojo;
+        background-color: v.$rojo;
     }
 
     &.exito {
-        background-color: $verde;
+        background-color: v.$verde;
     }
 
     &.actualizar {
-        background-color: $amarillo;
+        background-color: v.$amarillo;
     }
 
     &.eliminar {
-        background-color: $rojo;
+        background-color: v.$rojo;
     }
    
 }
@@ -31,10 +33,10 @@ table.propiedades {
     
 
     thead {
-        background-color: $verde;
+        background-color: v.$verde;
 
         th {
-            color: $blanco;
+            color: v.$blanco;
             padding: 2rem;
         }
     }

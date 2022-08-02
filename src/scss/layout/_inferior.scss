@@ -1,4 +1,7 @@
-@include tablet {
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+@include m.tablet {
     .seccion-inferior {
         display: grid;
         grid-template-columns: 2fr 1fr;
@@ -9,7 +12,7 @@
 .entrada-blog {
     margin-bottom: 2rem;
 
-    @include tablet {
+    @include m.tablet {
         display: grid;
         grid-template-columns: 1fr 2fr;
         column-gap: 2rem;
@@ -21,16 +24,16 @@
 
 .informacion-meta {
     span {
-        color: $amarillo;
+        color: v.$amarillo;
     }
 }
 
 .texto-entrada {
     a {
-        color: $negro;
+        color: v.$negro;
         margin-top: 2rem;
         display: block;
-        @include tablet {
+        @include m.tablet {
             margin-top: 0;
         }
     }
@@ -42,7 +45,7 @@
             display: block;
             width: 15rem;
             height: .5rem;
-            background-color: $verde;
+            background-color: v.$verde;
             margin-top: 1rem;
         }
     }

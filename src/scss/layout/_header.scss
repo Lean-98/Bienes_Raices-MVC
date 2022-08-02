@@ -1,3 +1,6 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
 .no-webp .inicio {
     background-image: url(../img/header03.jpg);
 }
@@ -7,18 +10,18 @@
 
 
 .header {
-    background-color: $grisOscuro;
+    background-color: v.$grisOscuro;
     padding: 1rem 0 3rem 0;
 
     &.inicio {
         background-position: center center;
         background-size: cover;
-        @include tablet {
+        @include m.tablet {
             min-height: 70rem;
         }
 
         .contenido-header {
-            @include tablet {
+            @include m.tablet {
                 min-height: 70rem;
             }
         }
@@ -32,8 +35,8 @@
   
   h1 {
       text-align: left;
-      color: $blanco;
-      font-weight: $bold;
+      color: v.$blanco;
+      font-weight: v.$bold;
       line-height: 2;
       max-width: 60rem;
   }

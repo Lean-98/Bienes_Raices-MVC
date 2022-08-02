@@ -1,17 +1,19 @@
+@use 'base/variables' as v;
+
 .formulario {
     p {
         font-size: 1.5rem;
-        color: $grisOscuro;
+        color: v.$grisOscuro;
         margin: 2rem 0 0 0;
     }
 
     legend {
         font-size: 2rem;
-        color: $grisOscuro;
+        color: v.$grisOscuro;
     }
 
     label {
-        font-weight: $bold;
+        font-weight: v.$bold;
         text-transform: uppercase;
         display: block;
     }
@@ -21,8 +23,8 @@
         padding: 1rem;
         display: block;
         width: 100%;
-        background-color: $blanco;
-        border: 1px solid $gris;
+        background-color: v.$blanco;
+        border: 1px solid v.$gris;
         border-radius: 1rem;
         margin-bottom: 2rem;
     }

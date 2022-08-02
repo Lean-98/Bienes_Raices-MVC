@@ -9,7 +9,7 @@ class VendedorController {
     
     public static function crear (Router $router) {
        
-        $errores = Vendedor::getErrores();
+        $alertas = [];
 
         $vendedor = new Vendedor;
 
@@ -31,9 +31,9 @@ class VendedorController {
             }
             
             // Validar que no haya campos vacios
-            $errores = $vendedor->validar();
+            $alertas  = $vendedor->validar();
              
-            if(empty($errores)) {
+            if(empty($alertas )) {
             
             // Crear la carpeta para subir imagenes
             if(!is_dir(CARPETA_IMAGENES)) {
@@ -45,11 +45,14 @@ class VendedorController {
         
             // Guarda en la base de datos
             $vendedor->guardar();
+            Vendedor::setAlerta('exito', 'Vendedor Creado Correctamente!'); 
+            // Redireccionar al login
+            header('Refresh: 3; url= /admin');
         }
     }
-
+        $alertas = Vendedor::getAlertas();
         $router->render('vendedores/crear', [
-            'errores' => $errores,
+            'alertas' => $alertas ,
             'vendedor' => $vendedor
         ]);
     }
@@ -61,7 +64,7 @@ class VendedorController {
         // Obtener datos del vendedor a actualizar
         $vendedor = Vendedor::find($id);
 
-        $errores = Vendedor::getErrores();
+        $alertas = [];
 
         if($_SERVER['REQUEST_METHOD'] === 'POST') {
     
@@ -72,7 +75,7 @@ class VendedorController {
             $vendedor->sincronizar($args);
         
             // Validación
-            $errores = $vendedor->validar();
+            $alertas  = $vendedor->validar();
         
             // Subida de archivos
             // Generar un nombre único
@@ -83,23 +86,27 @@ class VendedorController {
                 $vendedor->setImagen($nombreImagen);
             }
         
-            if(empty($errores)) {
+            if(empty($alertas )) {
                 // Almacenar la imagen
                 if ($_FILES['vendedor']['tmp_name']['imagen']){
                 $image->save(CARPETA_IMAGENES . $nombreImagen);
                  }
                  $vendedor->guardar();
+                 Vendedor::setAlerta('exito', 'Vendedor Actualizado Correctamente!'); 
+                 // Redireccionar al login
+                 header('Refresh: 3; url= /admin');             
                 }
         }
 
+             $alertas = Vendedor::getAlertas();
             $router->render('vendedores/actualizar', [
-                'errores' => $errores,
+                'alertas' => $alertas ,
                 'vendedor' => $vendedor
 
             ]);
     }
 
-    public static function eliminar () {
+    public static function eliminar() {
        
         if($_SERVER['REQUEST_METHOD'] === 'POST') {
             // validar el id
@@ -113,6 +120,7 @@ class VendedorController {
                 if(validarTipoContenido($tipo)) {
                     $vendedor = Vendedor::find($id);
                     $vendedor->eliminar();
+                    header('Location: /admin');
                 }
             }
         }      

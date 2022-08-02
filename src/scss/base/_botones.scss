@@ -1,51 +1,54 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
 .boton-amarillo {
-    @include boton($amarillo, inline-block);
+    @include m.boton(v.$amarillo, inline-block);
 }
 
 .boton-amarillo-block {
-    @include boton($amarillo, block);
+    @include m.boton(v.$amarillo, block);
 }
 
 .boton-verde {
-    @include boton($verde, inline-block)
+    @include m.boton(v.$verde, inline-block)
 }
 
 .boton-verde-block {
-    @include boton($verde, block);
+    @include m.boton(v.$verde, block);
 }
 
 .boton-limeGreen {
-    @include boton($limeGreen, inline-block);
+    @include m.boton(v.$limeGreen, inline-block);
 }
 
 .boton-springGreen {
-    @include boton($springGreen, inline-block);
+    @include m.boton(v.$springGreen, inline-block);
 }
 
-.boton-greenYellow {
-    @include boton($greenYellow, inline-block);
+.boton-forestGreen {
+    @include m.boton( v.$forestGreen, inline-block);
 }
 
 .boton-rojo-block {
-    @include boton($rojo, block);
+    @include m.boton(v.$rojo, block);
     width: 100%;
 }
 .boton-rojo {
-    @include boton($rojo, inline-block)
+    @include m.boton(v.$rojo, inline-block)
 }
 
 .boton-mediumSeaGreen-block {
-    @include boton($mediumSeaGreen, block);
+    @include m.boton(v.$mediumSeaGreen, block);
     width: 100%;
 }
 .boton-mediumSeaGreen {
-    @include boton($mediumSeaGreen, inline-block)
+    @include m.boton(v.$mediumSeaGreen, inline-block)
 }
 
 .boton-orange {
-    @include boton($orange, inline-block);
+    @include m.boton(v.$orange, inline-block);
 }
 
 .boton-orange-block {
-    @include boton($orange, block);
+    @include m.boton(v.$orange, block);
 }

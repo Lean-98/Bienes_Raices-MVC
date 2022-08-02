@@ -36,17 +36,13 @@ class PropiedadController {
 
              $propiedad = new Propiedad;
              $vendedores = Vendedor::all();
-        
-            // Arreglo con mensajes de errores.
-            $errores = Propiedad::getErrores();
+             $alertas = [];
 
             if($_SERVER['REQUEST_METHOD'] === 'POST') {
              //Crea una nueva instancia 
             $propiedad = new Propiedad($_POST['propiedad']);
         
-        
              /**  SUBIDA DE ARCHIVOS */
-       
             // Generar un nombre único
             $nombreImagen = md5( uniqid( rand(), true) ) . ".jpg";
 
@@ -58,9 +54,9 @@ class PropiedadController {
             }
   
             // Validar
-            $errores = $propiedad->validar();
+            $alertas  = $propiedad->validar();
          
-            if(empty($errores)) {
+            if(empty($alertas )) {
         
             // Crear la carpeta para subir imagenes
              if(!is_dir(CARPETA_IMAGENES)) {
@@ -72,13 +68,18 @@ class PropiedadController {
 
             // Guarda en la base de datos
             $propiedad->guardar();
+            // Crear mensaje de exito
+            Propiedad::setAlerta('exito', 'Propiedad Creada Correctamente!'); 
+            // Redireccionar al login
+            header('Refresh: 3; url= /admin');
         }
     }
 
+    $alertas = Propiedad::getAlertas();
     $router->render('propiedades/crear', [
         'propiedad' => $propiedad,
         'vendedores' => $vendedores,
-        'errores' => $errores
+        'alertas' => $alertas 
     ]);
 }
 
@@ -89,7 +90,7 @@ class PropiedadController {
 
        $vendedores = Vendedor::all();
 
-       $errores = Propiedad::getErrores();
+       $alertas = [];
 
        // Método POST para actualizar
        if($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -100,7 +101,7 @@ class PropiedadController {
         $propiedad->sincronizar($args);
 
         // Validación
-        $errores = $propiedad->validar();
+        $alertas  = $propiedad->validar();
 
         // Subida de archivos
         // Generar un nombre único
@@ -111,24 +112,27 @@ class PropiedadController {
             $propiedad->setImagen($nombreImagen);
         }
 
-        if(empty($errores)) {
+        if(empty($alertas )) {
             // Almacenar la imagen
             if ($_FILES['propiedad']['tmp_name']['imagen']){
             $image->save(CARPETA_IMAGENES . $nombreImagen);
             }
             $propiedad->guardar();
+            Propiedad::setAlerta('exito', 'Propiedad Actualizada Correctamente!'); 
+            // Redireccionar al login
+            header('Refresh: 3; url= /admin');
         }
     }
-
+        $alertas = Propiedad::getAlertas();
        $router->render('propiedades/actualizar', [
           'propiedad' => $propiedad,
           'vendedores' => $vendedores,
-          'errores' => $errores 
+          'alertas' => $alertas  
        ]);
     }
 
 
-    public static function eliminar () {
+    public static function eliminar() {
         
             if($_SERVER['REQUEST_METHOD'] === 'POST') {
 
@@ -142,6 +146,7 @@ class PropiedadController {
                          // Obtener los datos de la propiedad
                         $propiedad = Propiedad::find($id);
                         $propiedad->eliminar();
+                        header('Location: /admin');
                     }
                 }
              }

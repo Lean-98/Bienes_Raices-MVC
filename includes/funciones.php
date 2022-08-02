@@ -47,27 +47,6 @@ function validarTipoContenido($tipo) {
     return in_array($tipo, $tipos);
 }
 
-// Muestra los mensajes
-function mostrarNotificaciones($codigo) {
-    $mensaje = '';
-
-    switch($codigo) {
-       case 1:
-        $mensaje = 'Creado Correctamente!';
-        break;
-        case 2:
-        $mensaje = 'Actualizado Correctamente!';
-        break;
-        case 3:
-        $mensaje = 'Eliminado Correctamente!';
-        break;
-        default:
-           $mensaje = false;
-           break;    
-    }
-    return $mensaje;
-}
-
 function validarORedireccionar(string $url) {
  // Validar la URL por un ID válido INT
  $id = $_GET['id'];
@@ -80,3 +59,14 @@ function validarORedireccionar(string $url) {
  return $id;
 }
 
+// function isAdmin() : void {
+//     if(!isset($_SESSION['admin'])) {
+//         header('Location: /');
+//     }
+// }
+
+function iniciaSesion() {
+    if(!isset($_SESSION)) {
+        session_start();
+    }
+}

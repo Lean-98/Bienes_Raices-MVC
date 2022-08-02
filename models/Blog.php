@@ -27,22 +27,22 @@ class Blog extends ActiveRecord {
 
     public function validar() {
         if(!$this->titulo) {
-            self::$errores[] = "El Titulo es obligatorio!";
+            self::$alertas ['error'][] = "El Titulo es obligatorio!";
         }
 
         if(!$this->escritor) {
-            self::$errores[] = "El nombre del Escritor es obligatorio!";
+            self::$alertas ['error'][] = "El nombre del Escritor es obligatorio!";
         }
 
         if(!$this->contenido) {
-            self::$errores[] = "El contenido del blog es obligatorio!";
+            self::$alertas ['error'][] = "El contenido del blog es obligatorio!";
         }
 
         if(!$this->imagen) {
-            self::$errores[] = "La Imagen del blog es Obligatoria!";
+            self::$alertas ['error'][] = "La Imagen del blog es Obligatoria!";
         }
 
-       return self::$errores;
+       return self::$alertas ;
 
     }
 }

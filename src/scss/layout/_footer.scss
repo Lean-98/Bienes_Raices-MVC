@@ -1,10 +1,13 @@
+@use 'base/variables' as v;
 .footer {
-    padding: $separacion / 2 0;
-    background-color: $grisOscuro;
+    padding: 1.5em 0;
     margin-bottom: 0;
+    background-color: darken(v.$grisOscuro, 3%);
+    text-align: center;
+    margin-top: auto;
 
     .contenido-footer {
-        padding-top: $separacion / 2;
+        padding-top: calc(v.$separacion / 2);
     }
 
     .navegacion {
@@ -14,7 +17,7 @@
     }
 
     .copyright {
-        color: $blanco;
+        color: v.$blanco;
         text-align: center;
     }
 }

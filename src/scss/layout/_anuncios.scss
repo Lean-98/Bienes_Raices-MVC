@@ -1,12 +1,15 @@
-@include tablet {
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+@include m.tablet {
     .contenedor-anuncios {
-        @include grid(3, 2rem);
+        @include m.grid(3, 2rem);
     }
 }
 
 .anuncio {
-    background-color: lighten($gris, 5);
-    border: 1px solid darken($gris, 10);
+    background-color: lighten(v.$gris, 5);
+    border: 1px solid darken(v.$gris, 10);
     margin-bottom: 2rem;
 
     .contenido-anuncio {
@@ -18,8 +21,8 @@
     }
 }
 .precio {
-    color: $verde;
-    font-weight: $bold;
+    color: v.$verde;
+    font-weight: v.$bold;
     font-size: 3rem;
 }
 
@@ -39,7 +42,7 @@
            margin-right: 1rem;
        }
        p {
-           font-weight: $black;
+           font-weight: v.$black;
        }
    }
 }

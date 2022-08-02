@@ -27,34 +27,34 @@ class Vendedor extends ActiveRecord {
 
     public function validar() {
         if(!$this->nombre) {
-            self::$errores[] = "El Nombre es obligatorio!";
+            self::$alertas ['error'][] = "El Nombre es obligatorio!";
         }
 
         if(!$this->apellido) {
-            self::$errores[] = "El Apellido es obligatorio!";
+            self::$alertas ['error'][] = "El Apellido es obligatorio!";
         }
 
         if(!$this->telefono) {
-            self::$errores[] = "Debes agregar un número de teléfono!";
+            self::$alertas ['error'][] = "Debes agregar un número de teléfono!";
         }
 
         if(!$this->email) {
-            self::$errores[] = "Debes agregar un E-mail!";
+            self::$alertas ['error'][] = "Debes agregar un E-mail!";
         }
         
         if(!filter_var($this->email, FILTER_VALIDATE_EMAIL)) {
-            self::$errores[] = "Formato de E-mail no válido!";
+            self::$alertas ['error'][] = "Formato de E-mail no válido!";
         }
 
         if(!$this->imagen) {
-            self::$errores[] = "La Imagen del Vendedor/a es Obligatoria!";
+            self::$alertas ['error'][] = "La Imagen del Vendedor/a es Obligatoria!";
         }
         
         if(!preg_match("/[0-9]{11}/", $this->telefono) or strlen($this->telefono) > 11) {
-            self::$errores[] = "Formato de Teléfono no válido!";
+            self::$alertas ['error'][] = "Formato de Teléfono no válido!";
         }
 
-       return self::$errores;
+       return self::$alertas ;
 
     }
 }

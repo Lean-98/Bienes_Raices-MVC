@@ -22,14 +22,14 @@ class Testimonial extends ActiveRecord {
     public function validar() {
 
         if(!$this->nombreCompleto) {
-            self::$errores[] = "El nombre del Cliente es obligatorio!";
+            self::$alertas ['error'][] = "El nombre del Cliente es obligatorio!";
         }
 
         if(!$this->contenido) {
-            self::$errores[] = "El contenido del testimonial es obligatorio!";
+            self::$alertas ['error'][] = "El contenido del testimonial es obligatorio!";
         }
 
-       return self::$errores;
+       return self::$alertas ;
 
     }
 }

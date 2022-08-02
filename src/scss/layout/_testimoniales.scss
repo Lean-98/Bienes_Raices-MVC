@@ -1,8 +1,10 @@
+@use 'base/variables' as v;
+
 .testimonial {
-    background-color: $verde;
+    background-color: v.$verde;
     font-size: 2.4rem;
     padding: 2rem;
-    color: $blanco;
+    color: v.$blanco;
     border-radius: 2rem;
 
     blockquote {
@@ -23,6 +25,6 @@
 
     p {
         text-align: right;
-        color: $blanco;
+        color: v.$blanco;
     }
 }
