@@ -158,7 +158,7 @@ public static function get($cantidad) {
 
 // Busca un registro por su id
 public static function find($id) {
-    $query = "SELECT * FROM " . static::$tabla . " WHERE id = ${id}";
+    $query = "SELECT * FROM " . static::$tabla . " WHERE id = {$id}";
 
     $resultado = self::consultarSQL($query);
 
