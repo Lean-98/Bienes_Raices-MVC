@@ -87,12 +87,12 @@ class PaginasController {
 
       // Configurar SMTP
       $mail->isSMTP();
-      $mail->Host = $_ENV['MAIL_HOST'];
+      $mail->Host = $_ENV['EMAIL_HOST'];
       $mail->SMTPAuth = true;
-      $mail->Username = $_ENV['MAIL_USER'];
-      $mail->Password = $_ENV['MAIL_PASSWORD'];
+      $mail->Username = $_ENV['EMAIL_USER'];
+      $mail->Password = $_ENV['EMAIL_PASSWORD'];
       $mail->SMTPSecure = 'tls';
-      $mail->Port = $_ENV['MAIL_PORT'];
+      $mail->Port = $_ENV['EMAIL_PORT'];
 
       // Configurar el contenido del mail
       $mail->setFrom('admin@bienesraices.com');

@@ -1,7 +1,8 @@
 vendor/
 node_modules/
-gulpfile.js
-package.json
-package-lock.json
+# gulpfile.js
+# package.json
+# package-lock.json
 .env
+.env.local
 
