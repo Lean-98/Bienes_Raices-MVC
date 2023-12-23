@@ -1,5 +1,5 @@
 
-# Sitio Web para Inmobiliaria con MVC PHP 8 MySQL HTML CSS Sass Gulp Javascript.
+# Sitio Web para Inmobiliaria con MVC PHP 8 MySQL HTML Sass Gulp Javascript.
 
 
 
