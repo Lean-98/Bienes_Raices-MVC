@@ -1,11 +1,15 @@
 
 # 🌆 Bienes Raices - Sitio Web para Inmobiliaria
-
+Sitio web para inmobiliaria es una solución completa con gestión y administración privada para las diferentes secciones del sitio, totalmente dinámica y adaptable para cualquier dispositivo, incluso cuenta con dark mode para una experiencia visual más cómoda en entornos con poca luz.
+El proyecto Bienes Raíces es un sitio web completo para inmobiliarias que ofrece una gestión y administración privada para propiedades, vendedores, blogs y testimoniales de forma dinámica. Además, cuenta con una sección de contacto con formulario dinámico. También incluye un sistema de login privado para la administración del sitio.
+Construido con HTML, SASS, JavaScript Vanilla, PHP 8 y siguiendo el patrón de diseño MVC, este sitio web proporciona una plataforma sólida y eficiente para la gestión inmobiliaria. Ideal para agencias y profesionales del sector, Bienes Raíces ofrece una experiencia completa y dinámica tanto para los administradores como para los usuarios finales.
 
 
 ## Tech Stack
-Tech Stack:  POO PHP 8 MySQL MVC HTML Sass Gulp Javascript Vanilla
-Testing: Cypress
+Construida con POO con PHP usando estructura MVC y Base de Datos MySQL (crud, normalización, cardinalidad, relación de tablas, joins, etc.).
+Front-end: HTML Sass Gulp Javascript Vanilla. 
+Dev Tools and testing: TablePlus, PostMan, Cypress.
+
 
 
 
