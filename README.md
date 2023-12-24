@@ -5,6 +5,7 @@
 
 ## Tech Stack
 Tech Stack:  POO PHP 8 MySQL MVC HTML Sass Gulp Javascript Vanilla
+Testing: Cypress
 
 
 
