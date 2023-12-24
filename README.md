@@ -7,7 +7,9 @@ Construido con HTML, SASS, JavaScript Vanilla, PHP 8 y siguiendo el patrón de d
 
 ## Tech Stack
 Construida con POO con PHP usando estructura MVC y Base de Datos MySQL (crud, normalización, cardinalidad, relación de tablas, joins, etc.).
+
 Front-end: HTML Sass Gulp Javascript Vanilla. 
+
 Dev Tools and testing: TablePlus, PostMan, Cypress.
 
 
