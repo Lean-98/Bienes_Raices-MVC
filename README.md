@@ -1,9 +1,10 @@
 
-# Sitio Web para Inmobiliaria con MVC PHP 8 MySQL HTML Sass Gulp Javascript.
+# 🌆 Bienes Raices - Sitio Web para Inmobiliaria
 
 
 
-
+## Tech Stack
+Tech Stack:  POO PHP 8 MySQL MVC HTML Sass Gulp Javascript Vanilla
 
 
 
@@ -32,5 +33,11 @@ php -S localhost:3000
 ## Acknowledgements
 
  - [Juan de la Torre](https://codigoconjuan.com/)
+
+
+
+## Authors
+
+- [@LeandroPiazza](https://www.github.com/Lean-98)
 
 
